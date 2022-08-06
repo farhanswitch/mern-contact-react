@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "tail": "npx tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/style.css --watch"
   },
   "dependencies": {
     "axios": "^0.27.2",

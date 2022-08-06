@@ -719,6 +719,10 @@ video {
   width: 250px;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .min-w-\[400px\] {
   min-width: 400px;
 }
@@ -799,6 +803,10 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .border {
   border-width: 1px;
 }
@@ -862,6 +870,22 @@ video {
 
 .bg-blue-600\/70 {
   background-color: rgb(37 99 235 / 0.7);
+}
+
+.bg-green-500\/70 {
+  background-color: rgb(34 197 94 / 0.7);
+}
+
+.bg-white\/60 {
+  background-color: rgb(255 255 255 / 0.6);
+}
+
+.bg-white\/80 {
+  background-color: rgb(255 255 255 / 0.8);
+}
+
+.p-4 {
+  padding: 1rem;
 }
 
 .py-4 {
@@ -964,6 +988,11 @@ video {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-white\/30 {
+  --tw-shadow-color: rgb(255 255 255 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
 }
 
 .backdrop-blur-md {

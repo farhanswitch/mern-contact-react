@@ -17,8 +17,8 @@ const checkPassword = (password) => {
 };
 
 const checkName = (name) => {
-  if (!name) {
-    return false;
+  if (name === "skip") {
+    return true;
   }
   return validator.isAlpha(name, "en-US", { ignore: " " });
 };

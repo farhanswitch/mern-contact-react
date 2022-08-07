@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Layout from "../components/Layout";
 import ModalNotif from "../components/ModalNotif";
+import { validatingUserData } from "../utilities/validation";
+import { encrypt } from "../utilities/aes";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -11,15 +14,26 @@ const LoginPage = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (email, password) => {
-    setResponse({
-      statusMsg: "Error",
-      errors: [
-        {
-          msg: "Invalid password",
-        },
-      ],
-    });
-    setShowModal(true);
+    const errors = validatingUserData("skip", email, password);
+    if (errors.length !== 0) {
+      console.log(errors);
+      setResponse({
+        statusMsg: "Error",
+        errors,
+      });
+      setShowModal(true);
+      return false;
+    }
+    axios
+      .post("http://localhost:4000/users/login/", {
+        email,
+        password: encrypt(password),
+      })
+      .then((response) => {
+        setShowModal(true);
+        setResponse(response.data);
+        console.log(response.data);
+      });
   };
   return (
     <Layout pageTitle="Login">
@@ -28,6 +42,8 @@ const LoginPage = () => {
           showModal={showModal}
           setShowModal={setShowModal}
           response={response}
+          msg={"Login success"}
+          nextPath={"/"}
         />
       )}
       <div className="login w-full mx-auto flex justify-center items-center ">

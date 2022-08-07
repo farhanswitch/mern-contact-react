@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Layout from "../components/Layout";
+import ModalNotif from "../components/ModalNotif";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [response, setResponse] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleSubmit = (email, password) => {
+    setResponse({
+      statusMsg: "Error",
+      errors: [
+        {
+          msg: "Invalid password",
+        },
+      ],
+    });
+    setShowModal(true);
+  };
   return (
     <Layout pageTitle="Login">
+      {response && (
+        <ModalNotif
+          showModal={showModal}
+          setShowModal={setShowModal}
+          response={response}
+        />
+      )}
       <div className="login w-full mx-auto flex justify-center items-center ">
         <div className="inner min-w-[600px] flex items-stretch border border-slate-200 rounded-xl shadow-xl text-slate-700">
           <div className="left bg-green-500/70 w-[200px]  min-h-full grid place-items-center  ">
@@ -22,7 +43,13 @@ const LoginPage = () => {
           </div>
           <div className="right flex-1 h-full py-4">
             <h2 className="text-center text-blue-600 mb-4">Login</h2>
-            <form className="py-5 w-full block max-w-3xl mx-auto px-6">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit(email, password);
+              }}
+              className="py-5 w-full block max-w-3xl mx-auto px-6"
+            >
               <div className="form-element mt-3">
                 <label htmlFor="email">Email Address</label>
                 <input

@@ -1,16 +1,57 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Layout from "../components/Layout";
+import ModalNotif from "../components/ModalNotif";
+import { validatingUserData } from "../utilities/validation";
+import { encrypt } from "../utilities/aes";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
+  const [response, setResponse] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleRegister = (name, email, password, password1) => {
+    const errors = validatingUserData(name, email, password);
+    if (password !== password1) {
+      errors.push({ msg: "Password doesn't match" });
+    }
+    if (errors.length !== 0) {
+      console.log(errors);
+      setResponse({
+        statusMsg: "Error",
+        errors,
+      });
+      setShowModal(true);
+      return false;
+    }
+
+    axios
+      .post("http://localhost:4000/users/add/", {
+        name,
+        email,
+        password: encrypt(password),
+      })
+      .then((response) => {
+        setShowModal(true);
+        setResponse(response.data);
+        console.log(response.data);
+      });
+  };
   return (
     <Layout pageTitle="Register">
+      {response && (
+        <ModalNotif
+          showModal={showModal}
+          setShowModal={setShowModal}
+          response={response}
+          nextPath={"/login"}
+        />
+      )}
       <div className="register w-full mx-auto flex justify-center items-center ">
         <div className="inner min-w-[600px] flex items-stretch border border-slate-200 rounded-xl shadow-xl text-slate-700">
           <div className="left bg-sky-500/70 w-[200px]  min-h-full grid place-items-center ">
@@ -26,7 +67,13 @@ const RegisterPage = () => {
             <h2 className="text-center text-blue-600 mb-4">
               Register an Account
             </h2>
-            <form className="py-5 w-full block max-w-3xl mx-auto px-6">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleRegister(name, email, password, password1);
+              }}
+              className="py-5 w-full block max-w-3xl mx-auto px-6"
+            >
               <div className="form-element mt-3">
                 <label htmlFor="name">Full Name</label>
                 <input

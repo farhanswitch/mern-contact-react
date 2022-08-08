@@ -9,6 +9,7 @@ import DashboardPage from "./pages/DashboardPage";
 import DashboardContact from "./pages/DashboardContact";
 import DashboardContactDetail from "./pages/DashboardContactDetail";
 import DashboardContactEdit from "./pages/DashboardContactEdit";
+import DashboardContactAdd from "./pages/DashboardContactAdd";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,10 @@ ReactDOM.render(
         <Route path="/login" element={<LoginPage />} />,
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/dashboard/contacts" element={<DashboardContact />} />
+        <Route
+          path="/dashboard/contacts/add"
+          element={<DashboardContactAdd />}
+        />
         <Route
           path="/dashboard/contacts/:id"
           element={<DashboardContactDetail />}

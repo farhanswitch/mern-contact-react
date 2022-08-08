@@ -36,6 +36,7 @@ const DashboardContactEdit = () => {
           setShowModal={setShowModal}
           response={result}
           reset={resetResult}
+          nextPath="/dashboard/contacts"
         />
       ) : null}
       <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">

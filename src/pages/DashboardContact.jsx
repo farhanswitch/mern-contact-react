@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import DashboardLayout from "../components/DasboardLayout";
 import ContactCard from "../components/ContactCard";
@@ -22,7 +23,13 @@ const DashboardContact = () => {
   }, [isUpdate]);
   return (
     <DashboardLayout pageTitle="Dashboard Contacts">
-      <div className="h-full overflow-y-auto">
+      <div className="h-full relative overflow-y-auto">
+        <Link
+          className="w-8 h-8 grid place-items-center rounded-full bg-stone-600/20 absolute bottom-4 right-4 text-xl text-blue-700 font-bold"
+          to="/dashboard/contacts/add"
+        >
+          +
+        </Link>
         <header className="w-full mt-4 px-8 flex justify-between">
           <span></span>
           <h2 className="text-lg">Contacts</h2>

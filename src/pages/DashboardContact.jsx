@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import DashboardLayout from "../components/DasboardLayout";
+import DashboardLayout from "../components/DashboardLayout";
 import ContactCard from "../components/ContactCard";
 import ModalDelete from "../components/ModalDelete";
 

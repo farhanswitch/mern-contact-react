@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import DashboardLayout from "../components/DasboardLayout";
+import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 
 const DashboardContactEdit = () => {

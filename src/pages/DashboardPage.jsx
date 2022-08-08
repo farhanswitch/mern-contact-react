@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import DashboardLayout from "../components/DasboardLayout";
+import DashboardLayout from "../components/DashboardLayout";
 import ModalConfirm from "../components/ModalConfirm";
 
 axios.defaults.withCredentials = true;

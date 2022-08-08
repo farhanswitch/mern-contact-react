@@ -1,11 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-const ModalNotif = ({ showModal, setShowModal, response, msg, nextPath }) => {
+const ModalNotif = ({
+  showModal,
+  setShowModal,
+  response,
+  msg,
+  nextPath,
+  reset,
+}) => {
   const navigate = useNavigate();
   const colors = {
     Success: "text-green-500",
     Error: "text-red-500",
+    "Nothing changed": "text-yelow-500",
   };
+  console.log(response.statusMsg);
   return (
     <div
       className={`layer ${
@@ -19,13 +28,17 @@ const ModalNotif = ({ showModal, setShowModal, response, msg, nextPath }) => {
           </p>
           <div className="px-3 text-slate-700 text-center">
             {response.statusMsg === "Success" ? (
-              <p>{msg}</p>
+              <p>{msg ? msg : response?.msg}</p>
             ) : (
               <span>
                 <p>Details :</p>
-                {response.errors?.map((res, index) => {
-                  return <p key={index}>{res.msg}</p>;
-                })}
+                {response.errors ? (
+                  response.errors?.map((res, index) => {
+                    return <p key={index}>{res.msg}</p>;
+                  })
+                ) : (
+                  <span>{response?.msg}</span>
+                )}
               </span>
             )}
           </div>
@@ -35,8 +48,9 @@ const ModalNotif = ({ showModal, setShowModal, response, msg, nextPath }) => {
           className="border py-1"
           onClick={() => {
             setShowModal(false);
+            if (reset) reset();
             if (response.statusMsg === "Success") {
-              navigate(nextPath);
+              if (nextPath) navigate(nextPath);
             }
           }}
         >

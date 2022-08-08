@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import DashboardContact from "./pages/DashboardContact";
 import DashboardContactDetail from "./pages/DashboardContactDetail";
+import DashboardContactEdit from "./pages/DashboardContactEdit";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,10 @@ ReactDOM.render(
         <Route
           path="/dashboard/contacts/:id"
           element={<DashboardContactDetail />}
+        />
+        <Route
+          path="/dashboard/contacts/edit/:id"
+          element={<DashboardContactEdit />}
         />
       </Routes>
     </BrowserRouter>

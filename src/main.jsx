@@ -6,6 +6,7 @@ import App from "./App";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import DashboardContact from "./pages/DashboardContact";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />,
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard/contacts" element={<DashboardContact />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

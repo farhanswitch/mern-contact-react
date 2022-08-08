@@ -43,7 +43,7 @@ const LoginPage = () => {
           setShowModal={setShowModal}
           response={response}
           msg={"Login success"}
-          nextPath={"/"}
+          nextPath={"/dashboard"}
         />
       )}
       <div className="login w-full mx-auto flex justify-center items-center ">

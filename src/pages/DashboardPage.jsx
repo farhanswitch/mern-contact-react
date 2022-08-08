@@ -10,8 +10,6 @@ axios.defaults.withCredentials = true;
 const DashboardPage = () => {
   const navigate = useNavigate();
   const [response, setResponse] = useState(null);
-  const [isOpen, setIsOpen] = useState(true);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:4000/auth").then((res) => {

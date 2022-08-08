@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import DashboardLayout from "../components/DashboardLayout";
 import ContactCard from "../components/ContactCard";
 import ModalDelete from "../components/ModalDelete";
+import PlusIcon from "../icons/Plus";
 
 const DashboardContact = () => {
   const [response, setResponse] = useState(null);
@@ -28,7 +29,7 @@ const DashboardContact = () => {
           className="w-8 h-8 grid place-items-center rounded-full bg-stone-600/20 absolute bottom-4 right-4 text-xl text-blue-700 font-bold"
           to="/dashboard/contacts/add"
         >
-          +
+          <PlusIcon width={10} color="#0c4a6e" />
         </Link>
         <header className="w-full mt-4 px-8 flex justify-between">
           <span></span>

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
+import SaveIcon from "../icons/Save";
 
 const DashboardContactAdd = () => {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ const DashboardContactAdd = () => {
     });
   };
   return (
-    <DashboardLayout>
+    <DashboardLayout pageTitle="Add New Contact">
       {result?.statusMsg && (
         <ModalNotif
           showModal={showModal}
@@ -39,7 +40,10 @@ const DashboardContactAdd = () => {
       <div className="container mt-4 mx-auto  max-w-3xl">
         <header className="flex mb-6 justify-between px-2 items-center">
           <h2 className="text-slate-700">Add Contact</h2>
-          <Link to="/contacts" className="text-decoration-none text-blue-700">
+          <Link
+            to="/dashboard/contacts"
+            className="text-decoration-none text-blue-700"
+          >
             All Contact
           </Link>
         </header>
@@ -94,10 +98,10 @@ const DashboardContactAdd = () => {
           </div>
           <button
             type="submit"
-            className="bg-blue-700 text-white px-4 py-2 rounded"
+            className="bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2"
           >
-            <i className="bi bi-plus-square mr-2"></i>
-            Add
+            <SaveIcon width={14} color="white" />
+            Save
           </button>
         </form>
       </div>

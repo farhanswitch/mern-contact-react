@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
+import UpdateIcon from "../icons/Update";
 
 const DashboardContactEdit = () => {
   const [showModal, setShowModal] = useState(null);
@@ -29,7 +30,7 @@ const DashboardContactEdit = () => {
     setResult(null);
   };
   return (
-    <DashboardLayout>
+    <DashboardLayout pageTitle="Edit Contact">
       {result?.msg ? (
         <ModalNotif
           showModal={showModal}
@@ -97,9 +98,9 @@ const DashboardContactEdit = () => {
           </div>
           <button
             type="submit"
-            className="bg-green-700 text-white px-4 py-2 rounded"
+            className="bg-green-700 text-white px-4 py-2 rounded flex items-center gap-2"
           >
-            <i className="bi bi-save mr-2"></i>
+            <UpdateIcon width={14} color="white" />
             Update
           </button>
         </form>

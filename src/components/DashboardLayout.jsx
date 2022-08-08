@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
 
 import Layout from "./Layout";
 import ModalConfirm from "./ModalConfirm";
@@ -9,6 +10,8 @@ import ModalConfirm from "./ModalConfirm";
 axios.defaults.withCredentials = true;
 
 const DashboardLayout = (props) => {
+  // const isMenuOpen = useSelector((state) => state.menu.isOpen);
+  // console.log("state is menu open", isMenuOpen);
   const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const [isOpen, setIsOpen] = useState(true);

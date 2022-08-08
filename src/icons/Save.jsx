@@ -1,10 +1,11 @@
 import React from "react";
 
-const SaveIcon = ({ color, width }) => {
+const SaveIcon = ({ color = "currentColor", width, classList }) => {
   return (
     <svg
       width={width}
       fill={color}
+      className={classList}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
     >

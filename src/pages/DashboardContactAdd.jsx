@@ -100,7 +100,7 @@ const DashboardContactAdd = () => {
             type="submit"
             className="bg-blue-700 text-white px-4 py-2 rounded flex items-center gap-2"
           >
-            <SaveIcon width={14} color="white" />
+            <SaveIcon width={"14"} />
             Save
           </button>
         </form>

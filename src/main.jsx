@@ -11,6 +11,7 @@ import DashboardContact from "./pages/DashboardContact";
 import DashboardContactDetail from "./pages/DashboardContactDetail";
 import DashboardContactEdit from "./pages/DashboardContactEdit";
 import DashboardContactAdd from "./pages/DashboardContactAdd";
+import DashboardUsersPage from "./pages/DashboardUsers";
 import NotFound from "./pages/NotFound";
 
 ReactDOM.render(
@@ -35,6 +36,7 @@ ReactDOM.render(
           path="/dashboard/contacts/edit/:id"
           element={<DashboardContactEdit />}
         />
+        <Route path="/dashboard/users" element={<DashboardUsersPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

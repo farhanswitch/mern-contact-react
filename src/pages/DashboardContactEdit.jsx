@@ -8,6 +8,7 @@ import UpdateIcon from "../icons/Update";
 
 const DashboardContactEdit = () => {
   const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(null);
   const [contact, setContact] = useState(null);
   const [result, setResult] = useState(null);

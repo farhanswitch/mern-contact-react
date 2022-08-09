@@ -642,6 +642,10 @@ video {
   z-index: 5;
 }
 
+.z-\[11\] {
+  z-index: 11;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -747,6 +751,18 @@ video {
 
 .h-48 {
   height: 12rem;
+}
+
+.max-h-\[90vh\] {
+  max-height: 90vh;
+}
+
+.max-h-\[70vh\] {
+  max-height: 70vh;
+}
+
+.max-h-\[75vh\] {
+  max-height: 75vh;
 }
 
 .min-h-full {
@@ -1010,6 +1026,11 @@ video {
 
 .bg-blue-600\/70 {
   background-color: rgb(37 99 235 / 0.7);
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {

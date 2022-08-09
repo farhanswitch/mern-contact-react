@@ -36,7 +36,7 @@ const DashboardUsersPage = () => {
         <span></span>
         <h2 className="text-lg">Users</h2>
       </header>
-      <main className="pt-5 px-4 ">
+      <main className="pt-5 px-4 overflow-y-auto ">
         <section className="admin my-6 ">
           <h3 className="text-slate-700 pl-10 mb-8">Administrator</h3>
           <div className="users flex flex-wrap gap-6 justify-center ">

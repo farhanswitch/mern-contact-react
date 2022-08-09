@@ -164,7 +164,7 @@ const DashboardLayout = (props) => {
             </li>
           </ul>
         </aside>
-        <main className="flex-1 min-h-full bg-white flex flex-col ">
+        <main className="flex-1 min-h-full max-h-[75vh] overflow-y-auto bg-white flex flex-col ">
           {props?.children}
           {/* <header className="w-full mt-4 px-8 flex justify-between">
           <span></span>

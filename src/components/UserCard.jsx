@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserCard = ({ user }) => {
+  const navigate = useNavigate();
   const roles = {
     1: "Admin",
     2: "Premium",
@@ -13,7 +15,12 @@ const UserCard = ({ user }) => {
     3: "from-stone-400 to-zinc-600",
   };
   return (
-    <div className="user-card relative flex flex-col items-center justify-center w-[8em] min-h-[200px] pb-10 border rounded shadow">
+    <div
+      onClick={() => {
+        navigate(`/dashboard/users/${user?._id}`);
+      }}
+      className="user-card relative flex flex-col items-center justify-center w-[8em] min-h-[200px] pb-10 border rounded shadow"
+    >
       <span
         className={`absolute bottom-2 right-2 badge border p-1 rounded bg-gradient-to-r ${
           colors[user?.role]

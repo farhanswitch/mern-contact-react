@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import DashboardLayout from "../components/DashboardLayout";
 import UserCard from "../components/UserCard";
 
 const DashboardUsersPage = () => {
-  const user1 = {
-    name: "Muhammad Farhan",
-    email: "farhan@abc.com",
-    role: 1,
-  };
-  const user2 = {
-    name: "Sheila Purnama",
-    email: "sheila@abc.com",
-    role: 2,
-  };
-  const user3 = {
-    name: "Gazza Cahyadi",
-    email: "gazza@abc.com",
-    role: 3,
-  };
+  const navigate = useNavigate();
 
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:4000/users").then((res) => {
+      if (res.data?.role !== 1) {
+        navigate("/dashboard");
+      }
       console.log(res?.data?.users);
       setListUser(res?.data?.users);
       console.log(listUser);

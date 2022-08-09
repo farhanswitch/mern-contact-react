@@ -117,7 +117,9 @@ const DashboardLayout = (props) => {
                 </span>
               </Link>
             </li>
-            <li>
+            <li
+              className={`${response?.user?.role === 1 ? "block" : "hidden"}`}
+            >
               {" "}
               <Link
                 to={"/dashboard/users"}

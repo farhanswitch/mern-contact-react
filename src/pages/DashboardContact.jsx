@@ -11,22 +11,31 @@ const DashboardContact = () => {
   const [response, setResponse] = useState(null);
   const [toDelete, setToDelete] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [auth, setAuth] = useState(null);
 
   console.log(response);
   useEffect(() => {
     axios.get("http://localhost:4000/contacts").then((res) => {
       setResponse(res.data);
+      setAuth({ user: res.data.user });
 
       return () => {
         console.log("unmounted");
       };
     });
+    // axios.get("http://localhost:4000/auth").then((res) => {
+    //   if (res?.data?.id) {
+    //     console.log(res.data);
+    //     setAuth(res.data);
+    //   }
   }, [isUpdate]);
   return (
     <DashboardLayout pageTitle="Dashboard Contacts">
       <div className="h-full relative overflow-y-auto">
         <Link
-          className="w-8 h-8 grid place-items-center rounded-full bg-stone-600/20 absolute bottom-4 right-4 text-xl text-blue-700 font-bold"
+          className={`${
+            auth?.user?.role === 3 ? "hidden" : "grid"
+          } w-8 h-8  place-items-center rounded-full bg-stone-600/20 absolute bottom-4 right-4 text-xl text-blue-700 font-bold`}
           to="/dashboard/contacts/add"
         >
           <PlusIcon width={10} color="#0c4a6e" />
@@ -44,12 +53,14 @@ const DashboardContact = () => {
             />
           )}
           {response &&
+            auth &&
             response?.contacts?.map((contact, index) => {
               return (
                 <ContactCard
                   setToDelete={setToDelete}
                   contact={contact}
                   key={contact._id}
+                  authRole={auth.user.role}
                 />
               );
             })}

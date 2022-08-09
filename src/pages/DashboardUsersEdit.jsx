@@ -1,21 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import UpdateIcon from "../icons/Update";
 
 const DashboardUserEdit = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(null);
   const [user, setUser] = useState(null);
   const [result, setResult] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/users/${id}`)
-      .then((res) => setUser(res.data.user));
+    axios.get(`http://localhost:4000/users/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.role !== 1) {
+        navigate("/dashboard");
+      }
+      setUser(res.data.user);
+    });
   }, []);
   const handleSubmit = () => {
     axios

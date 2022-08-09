@@ -1,21 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import UpdateIcon from "../icons/Update";
 
 const DashboardContactEdit = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(null);
   const [contact, setContact] = useState(null);
   const [result, setResult] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/contacts/${id}`)
-      .then((res) => setContact(res.data.contact));
+    axios.get(`http://localhost:4000/contacts/${id}`).then((res) => {
+      if (res.data?.role !== 1 && res.data?.role !== 2) {
+        navigate("/dashboard/contacts");
+      }
+      setContact(res.data.contact);
+    });
   }, []);
   const handleSubmit = () => {
     axios

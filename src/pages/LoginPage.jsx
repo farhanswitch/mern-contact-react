@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../components/Layout";
@@ -8,10 +8,19 @@ import { validatingUserData } from "../utilities/validation";
 import { encrypt } from "../utilities/aes";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/auth").then((res) => {
+      if (res?.data?.user) {
+        navigate("/dashboard");
+      }
+    });
+  }, []);
 
   const handleSubmit = (email, password) => {
     const errors = validatingUserData("skip", email, password);

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../components/Layout";
@@ -8,6 +8,7 @@ import { validatingUserData } from "../utilities/validation";
 import { encrypt } from "../utilities/aes";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +16,13 @@ const RegisterPage = () => {
   const [response, setResponse] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    axios.get("http://localhost:4000/auth").then((res) => {
+      if (res?.data?.user) {
+        navigate("/dashboard");
+      }
+    });
+  }, []);
   const handleRegister = (name, email, password, password1) => {
     const errors = validatingUserData(name, email, password);
     if (password !== password1) {

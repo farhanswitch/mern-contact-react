@@ -11,6 +11,7 @@ import DashboardContact from "./pages/DashboardContact";
 import DashboardContactDetail from "./pages/DashboardContactDetail";
 import DashboardContactEdit from "./pages/DashboardContactEdit";
 import DashboardContactAdd from "./pages/DashboardContactAdd";
+import NotFound from "./pages/NotFound";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.render(
           path="/dashboard/contacts/edit/:id"
           element={<DashboardContactEdit />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

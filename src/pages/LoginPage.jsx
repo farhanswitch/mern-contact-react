@@ -13,6 +13,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  // const loginWithGoogle = () => {
+  //   window.open("http://localhost:4000/auth1/callback/google", "_self");
+  // };
 
   useEffect(() => {
     axios.get("http://localhost:4000/auth").then((res) => {
@@ -106,6 +109,12 @@ const LoginPage = () => {
               >
                 Sign In
               </button>
+              <hr className="my-2" />
+              <p className="my-4">or Login with</p>
+              <button onClick={() => {}} className="px-2 py-1 border">
+                Google
+              </button>
+              <hr className="my-2" />
               <p className="text-sm mt-4 text-slate-500">
                 Do not have an account yet ?
                 <Link className="text-blue-700 ml-2" to={"/register"}>

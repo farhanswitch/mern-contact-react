@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Layout from "../components/Layout";
 import ModalNotif from "../components/ModalNotif";
+import GoogleIcon from "../icons/Google";
 import { validatingUserData } from "../utilities/validation";
 import { encrypt } from "../utilities/aes";
 
@@ -114,13 +115,13 @@ const LoginPage = () => {
                   Sign In
                 </button>
                 <hr className="my-2" />
-                <p className="my-4">or Login with</p>
-                <div className="socmeds">
+                <p className="my-4 text-center text-sm">or Login with</p>
+                <div className="socmeds flex justify-center items-center">
                   <button
                     onClick={loginWithGoogle}
-                    className="px-2 py-1 border rounded"
+                    className="p-2 border rounded shadow hover:shadow-none"
                   >
-                    Google
+                    <GoogleIcon width={50} height={22} />
                   </button>
                 </div>
 

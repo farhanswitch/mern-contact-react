@@ -9,6 +9,7 @@ import UpdateIcon from "../icons/Update";
 
 const DashboardUserEdit = () => {
   const navigate = useNavigate();
+  const [role, setRole] = useState(null);
   const [isReady, setIsReady] = useState(false);
   const [toDelete, setToDelete] = useState(null);
   const [showModal, setShowModal] = useState(null);
@@ -18,10 +19,13 @@ const DashboardUserEdit = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:4000/users/${id}`).then((res) => {
+      if (!res.data.userData) {
+        navigate("/login");
+      }
       if (res.data?.userData?.role !== 1) {
         navigate("/dashboard");
       }
-
+      setRole(res?.data?.userData?.role);
       setUser(res.data.user);
       setIsReady(true);
     });
@@ -40,7 +44,7 @@ const DashboardUserEdit = () => {
   };
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
-      <DashboardLayout pageTitle="Edit User">
+      <DashboardLayout pageTitle="Edit User" role={role}>
         {toDelete && (
           <ModalDeleteUser handleClose={() => setToDelete(null)} user={user} />
         )}

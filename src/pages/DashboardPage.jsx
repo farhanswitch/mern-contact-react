@@ -33,7 +33,7 @@ const DashboardPage = () => {
   };
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
-      <DashboardLayout pageTitle="Dashboard">
+      <DashboardLayout pageTitle="Dashboard" role={response?.user?.role}>
         <>
           <header className="w-full mt-4 px-8 flex justify-between">
             <span></span>

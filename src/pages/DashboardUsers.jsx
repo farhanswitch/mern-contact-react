@@ -7,21 +7,21 @@ import UserCard from "../components/UserCard";
 
 const DashboardUsersPage = () => {
   const navigate = useNavigate();
-
+  const [role, setRole] = useState(null);
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:4000/users").then((res) => {
       if (res.data?.user?.role !== 1) {
         navigate("/dashboard");
       }
-
+      setRole(res?.data?.user?.role);
       setListUser(res?.data?.users);
 
       //   return () => setListUser([]);
     });
   }, []);
   return (
-    <DashboardLayout pageTitle="Dashboard Users">
+    <DashboardLayout pageTitle="Dashboard Users" role={role}>
       <header className="w-full mt-4 px-8 flex justify-between">
         <span></span>
         <h2 className="text-lg">Users</h2>

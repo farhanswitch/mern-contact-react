@@ -18,15 +18,15 @@ const DashboardLayout = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/auth").then((res) => {
-      if (res?.data?.id) {
-        console.log(res.data);
-        setResponse(res.data);
-      } else {
-        navigate("/login");
-      }
-      return () => console.log("unmounted");
-    });
+    // axios.get("http://localhost:4000/auth").then((res) => {
+    //   if (res?.data?.id) {
+    //     console.log(res.data);
+    //     setResponse(res.data);
+    //   } else {
+    //     navigate("/login");
+    //   }
+    //   return () => console.log("unmounted");
+    // });
   }, []);
   const handleAction = () => {
     axios.delete("http://localhost:4000/users/logout").then((res) => {
@@ -117,9 +117,7 @@ const DashboardLayout = (props) => {
                 </span>
               </Link>
             </li>
-            <li
-              className={`${response?.user?.role === 1 ? "block" : "hidden"}`}
-            >
+            <li className={`${props.role === 1 ? "block" : "hidden"}`}>
               {" "}
               <Link
                 to={"/dashboard/users"}

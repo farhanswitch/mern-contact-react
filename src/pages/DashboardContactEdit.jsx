@@ -12,14 +12,18 @@ const DashboardContactEdit = () => {
   const [showModal, setShowModal] = useState(null);
   const [contact, setContact] = useState(null);
   const [result, setResult] = useState(null);
+  const [role, setRole] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:4000/contacts/${id}`).then((res) => {
+      if (!res.data.role) {
+        navigate("/login");
+      }
       if (res.data?.role !== 1 && res.data?.role !== 2) {
         navigate("/dashboard/contacts");
       }
-
+      setRole(res.data?.role);
       setContact(res.data.contact);
       setIsReady(true);
     });
@@ -38,7 +42,7 @@ const DashboardContactEdit = () => {
   };
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
-      <DashboardLayout pageTitle="Edit Contact">
+      <DashboardLayout pageTitle="Edit Contact" role={role}>
         {result?.msg ? (
           <ModalNotif
             showModal={showModal}

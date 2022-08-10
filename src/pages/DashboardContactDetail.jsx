@@ -1,19 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 
 const DashboardContactDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [isReady, setIsReady] = useState(false);
   const [contact, setContact] = useState({});
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:4000/contacts/${id}`).then((res) => {
+      if (!res.data.role) {
+        navigate("/login");
+      }
       if (res?.data?.contact) {
         setContact(res?.data?.contact);
       }
+
+      setRole(res?.data?.role);
       setIsReady(true);
     });
   }, []);
@@ -25,7 +32,7 @@ const DashboardContactDetail = () => {
   //   };
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
-      <DashboardLayout pageTitle="Contact Detail">
+      <DashboardLayout pageTitle="Contact Detail" role={role}>
         <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
           <Link className="text-blue-700" to="/dashboard/contacts">
             All Contact

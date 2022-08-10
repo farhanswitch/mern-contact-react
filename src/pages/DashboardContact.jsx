@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 import ContactCard from "../components/ContactCard";
@@ -8,6 +8,7 @@ import ModalDelete from "../components/ModalDelete";
 import PlusIcon from "../icons/Plus";
 
 const DashboardContact = () => {
+  const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const [toDelete, setToDelete] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
@@ -16,6 +17,9 @@ const DashboardContact = () => {
   console.log(response);
   useEffect(() => {
     axios.get("http://localhost:4000/contacts").then((res) => {
+      if (!res?.data?.user) {
+        navigate("/login");
+      }
       setResponse(res.data);
       setAuth({ user: res.data.user });
 
@@ -30,7 +34,7 @@ const DashboardContact = () => {
     //   }
   }, [isUpdate]);
   return (
-    <DashboardLayout pageTitle="Dashboard Contacts">
+    <DashboardLayout pageTitle="Dashboard Contacts" role={response?.user?.role}>
       <div className="h-full relative overflow-y-auto">
         <Link
           className={`${

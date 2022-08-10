@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import DashboardLayout from "../components/DashboardLayout";
@@ -7,12 +7,22 @@ import ModalNotif from "../components/ModalNotif";
 import SaveIcon from "../icons/Save";
 
 const DashboardContactAdd = () => {
+  const navigate = useNavigate();
+  const [role, setRole] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [result, setResult] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    axios.get("http://localhost:4000/auth").then((res) => {
+      if (!res.data.user) {
+        navigate("/login");
+      }
+      setRole(res?.data?.user?.role);
+    });
+  }, []);
   const handleSubmit = () => {
     axios({
       method: "post",
@@ -27,7 +37,7 @@ const DashboardContactAdd = () => {
     });
   };
   return (
-    <DashboardLayout pageTitle="Add New Contact">
+    <DashboardLayout pageTitle="Add New Contact" role={role}>
       {result?.statusMsg && (
         <ModalNotif
           showModal={showModal}

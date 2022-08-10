@@ -17,10 +17,10 @@ const DashboardUserEdit = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:4000/users/${id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.role !== 1) {
+      if (res.data?.userData?.role !== 1) {
         navigate("/dashboard");
       }
+
       setUser(res.data.user);
     });
   }, []);

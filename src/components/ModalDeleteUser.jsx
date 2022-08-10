@@ -29,7 +29,7 @@ const ModalResponse = ({ user, setResponse, handleClose }) => {
         <button
           onClick={() => {
             setResponse(null);
-            navigate("/dasboard/users");
+            navigate("/dashboard/users");
             handleClose();
           }}
           className="w-full border py-2 text-green-600"

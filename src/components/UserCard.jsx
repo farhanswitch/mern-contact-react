@@ -19,7 +19,7 @@ const UserCard = ({ user }) => {
       onClick={() => {
         navigate(`/dashboard/users/${user?._id}`);
       }}
-      className="user-card relative flex flex-col items-center justify-center w-[8em] min-h-[200px] pb-10 border rounded shadow"
+      className="user-card relative flex flex-col items-center justify-center min-w-[8em] min-h-[200px] px-2 pb-10 border rounded shadow"
     >
       <span
         className={`absolute bottom-2 right-2 badge border p-1 rounded bg-gradient-to-r ${

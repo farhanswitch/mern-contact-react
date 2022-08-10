@@ -13,9 +13,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  // const loginWithGoogle = () => {
-  //   window.open("http://localhost:4000/auth1/callback/google", "_self");
-  // };
+  const loginWithGoogle = () => {
+    window.open("http://localhost:4000/auth1/google", "_self");
+  };
 
   useEffect(() => {
     axios.get("http://localhost:4000/auth").then((res) => {
@@ -111,7 +111,7 @@ const LoginPage = () => {
               </button>
               <hr className="my-2" />
               <p className="my-4">or Login with</p>
-              <button onClick={() => {}} className="px-2 py-1 border">
+              <button onClick={loginWithGoogle} className="px-2 py-1 border">
                 Google
               </button>
               <hr className="my-2" />

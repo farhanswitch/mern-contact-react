@@ -11,12 +11,12 @@ const DashboardUsersPage = () => {
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:4000/users").then((res) => {
-      if (res.data?.role !== 1) {
+      if (res.data?.user?.role !== 1) {
         navigate("/dashboard");
       }
-      console.log(res?.data?.users);
+
       setListUser(res?.data?.users);
-      console.log(listUser);
+
       //   return () => setListUser([]);
     });
   }, []);

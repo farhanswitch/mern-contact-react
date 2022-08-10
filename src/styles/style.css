@@ -758,6 +758,14 @@ video {
   max-height: 75vh;
 }
 
+.max-h-\[78vh\] {
+  max-height: 78vh;
+}
+
+.max-h-\[79vh\] {
+  max-height: 79vh;
+}
+
 .min-h-full {
   min-height: 100%;
 }

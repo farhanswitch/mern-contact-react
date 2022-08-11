@@ -18,6 +18,7 @@ const DashboardUserEdit = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    console.log(id);
     axios.get(`http://localhost:4000/users/${id}`).then((res) => {
       if (!res.data.userData) {
         navigate("/login");
@@ -31,8 +32,9 @@ const DashboardUserEdit = () => {
     });
   }, []);
   const handleSubmit = () => {
+    console.log(user);
     axios
-      .patch(`http://localhost:4000/users/edit/`, { ...user })
+      .patch(`http://localhost:4000/users/edit/${id}`, { ...user })
       .then((res) => {
         setResult(res.data);
         setShowModal(true);

@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios.get("http://localhost:4000/auth").then((res) => {
-      if (res?.data?.id) {
+      if (res?.data?.user) {
         console.log(res.data);
         setResponse(res.data);
         setIsReady(true);

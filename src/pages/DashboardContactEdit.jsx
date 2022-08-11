@@ -30,7 +30,7 @@ const DashboardContactEdit = () => {
   }, []);
   const handleSubmit = () => {
     axios
-      .patch(`http://localhost:4000/contacts/edit/`, { ...contact })
+      .patch(`http://localhost:4000/contacts/edit`, { ...contact })
       .then((res) => {
         setResult(res.data);
         setShowModal(true);

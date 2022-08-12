@@ -44,7 +44,7 @@ const ModalDeleteUser = ({ handleClose, user }) => {
   const [response, setResponse] = useState(null);
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     axios.delete(`http://localhost:4000/users/delete/${id}`).then((res) => {
       if (res.data.msg === "ok") {
         setResponse(user);

@@ -9,6 +9,7 @@ import ModalConfirm from "../components/ModalConfirm";
 axios.defaults.withCredentials = true;
 const DashboardPage = () => {
   const navigate = useNavigate();
+  const [isReady, setIsReady] = useState(false);
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
@@ -35,17 +36,19 @@ const DashboardPage = () => {
     });
   };
   return (
-    <DashboardLayout pageTitle="Dashboard">
-      <>
-        <header className="w-full mt-4 px-8 flex justify-between">
-          <span></span>
-          <h2 className="text-lg">Dashboard</h2>
-        </header>
-        <div className="content flex-1 grid place-items-center">
-          <h3 className="text-center">Hi, {response?.name}</h3>
-        </div>
-      </>
-    </DashboardLayout>
+    <div className={`${isReady ? "block" : "hidden"}`}>
+      <DashboardLayout pageTitle="Dashboard" role={response?.user?.role}>
+        <>
+          <header className="w-full mt-4 px-8 flex justify-between">
+            <span></span>
+            <h2 className="text-lg">Dashboard</h2>
+          </header>
+          <div className="content flex-1 grid place-items-center">
+            <h3 className="text-center">Hi, {response?.name}</h3>
+          </div>
+        </>
+      </DashboardLayout>
+    </div>
   );
 };
 export default DashboardPage;

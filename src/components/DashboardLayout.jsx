@@ -18,15 +18,15 @@ const DashboardLayout = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/auth").then((res) => {
-      if (res?.data?.id) {
-        console.log(res.data);
-        setResponse(res.data);
-      } else {
-        navigate("/login");
-      }
-      return () => console.log("unmounted");
-    });
+    // axios.get("http://localhost:4000/auth").then((res) => {
+    //   if (res?.data?.id) {
+    //     console.log(res.data);
+    //     setResponse(res.data);
+    //   } else {
+    //     navigate("/login");
+    //   }
+    //   return () => console.log("unmounted");
+    // });
   }, []);
   const handleAction = () => {
     axios.delete("http://localhost:4000/users/logout").then((res) => {
@@ -117,7 +117,7 @@ const DashboardLayout = (props) => {
                 </span>
               </Link>
             </li>
-            <li>
+            <li className={`${props.role === 1 ? "block" : "hidden"}`}>
               {" "}
               <Link
                 to={"/dashboard/users"}
@@ -162,7 +162,7 @@ const DashboardLayout = (props) => {
             </li>
           </ul>
         </aside>
-        <main className="flex-1 min-h-full bg-white flex flex-col ">
+        <main className="flex-1 min-h-full max-h-[79vh] overflow-y-auto bg-white flex flex-col ">
           {props?.children}
           {/* <header className="w-full mt-4 px-8 flex justify-between">
           <span></span>

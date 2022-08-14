@@ -16,7 +16,7 @@ function App() {
     });
   });
   return (
-    <Layout>
+    <Layout pageTitle="Home">
       <div className="App">
         <h1 className="text-center">MFContact</h1>
         <p className="text-center">API Status : {status}</p>

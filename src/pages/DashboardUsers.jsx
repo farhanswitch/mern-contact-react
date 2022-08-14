@@ -10,15 +10,25 @@ const DashboardUsersPage = () => {
   const [role, setRole] = useState(null);
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:4000/users").then((res) => {
-      if (res.data?.user?.role !== 1) {
-        navigate("/dashboard");
-      }
-      setRole(res?.data?.user?.role);
-      setListUser(res?.data?.users);
+    axios
+      .get("http://localhost:4000/users")
+      .then((res) => {
+        if (res.data?.user?.role !== 1) {
+          navigate("/dashboard");
+        }
+        setRole(res?.data?.user?.role);
+        setListUser(res?.data?.users);
 
-      //   return () => setListUser([]);
-    });
+        //   return () => setListUser([]);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
   }, []);
   return (
     <DashboardLayout pageTitle="Dashboard Users" role={role}>

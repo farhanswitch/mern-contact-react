@@ -16,17 +16,27 @@ const DashboardContactEdit = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/contacts/${id}`).then((res) => {
-      if (!res.data.role) {
-        navigate("/login");
-      }
-      if (res.data?.role !== 1 && res.data?.role !== 2) {
-        navigate("/dashboard/contacts");
-      }
-      setRole(res.data?.role);
-      setContact(res.data.contact);
-      setIsReady(true);
-    });
+    axios
+      .get(`http://localhost:4000/contacts/${id}`)
+      .then((res) => {
+        if (!res.data.role) {
+          navigate("/login");
+        }
+        if (res.data?.role !== 1 && res.data?.role !== 2) {
+          navigate("/dashboard/contacts");
+        }
+        setRole(res.data?.role);
+        setContact(res.data.contact);
+        setIsReady(true);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
   }, []);
   const handleSubmit = () => {
     axios

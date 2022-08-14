@@ -18,12 +18,22 @@ const RegisterPage = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/auth").then((res) => {
-      if (res?.data?.user) {
-        navigate("/dashboard");
-      }
-      setIsReady(true);
-    });
+    axios
+      .get("http://localhost:4000/auth")
+      .then((res) => {
+        if (res?.data?.user) {
+          navigate("/dashboard");
+        }
+        setIsReady(true);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          setIsReady(true);
+        }
+      });
   }, []);
   const handleRegister = (name, email, password, password1) => {
     const errors = validatingUserData(name, email, password);

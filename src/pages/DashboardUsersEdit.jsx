@@ -19,17 +19,27 @@ const DashboardUserEdit = () => {
 
   useEffect(() => {
     console.log(id);
-    axios.get(`http://localhost:4000/users/${id}`).then((res) => {
-      if (!res.data.userData) {
-        navigate("/login");
-      }
-      if (res.data?.userData?.role !== 1) {
-        navigate("/dashboard");
-      }
-      setRole(res?.data?.userData?.role);
-      setUser(res.data.user);
-      setIsReady(true);
-    });
+    axios
+      .get(`http://localhost:4000/users/${id}`)
+      .then((res) => {
+        if (!res.data.userData) {
+          navigate("/login");
+        }
+        if (res.data?.userData?.role !== 1) {
+          navigate("/dashboard");
+        }
+        setRole(res?.data?.userData?.role);
+        setUser(res.data.user);
+        setIsReady(true);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
   }, []);
   const handleSubmit = () => {
     console.log(user);

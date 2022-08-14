@@ -16,17 +16,27 @@ const DashboardContact = () => {
 
   console.log(response);
   useEffect(() => {
-    axios.get("http://localhost:4000/contacts").then((res) => {
-      if (!res?.data?.user) {
-        navigate("/login");
-      }
-      setResponse(res.data);
-      setAuth({ user: res.data.user });
+    axios
+      .get("http://localhost:4000/contacts")
+      .then((res) => {
+        if (!res?.data?.user) {
+          navigate("/login");
+        }
+        setResponse(res.data);
+        setAuth({ user: res.data.user });
 
-      return () => {
-        console.log("unmounted");
-      };
-    });
+        return () => {
+          console.log("unmounted");
+        };
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
     // axios.get("http://localhost:4000/auth").then((res) => {
     //   if (res?.data?.id) {
     //     console.log(res.data);

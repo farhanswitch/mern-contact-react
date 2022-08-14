@@ -16,12 +16,22 @@ const DashboardContactAdd = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/auth").then((res) => {
-      if (!res.data.user) {
-        navigate("/login");
-      }
-      setRole(res?.data?.user?.role);
-    });
+    axios
+      .get("http://localhost:4000/auth")
+      .then((res) => {
+        if (!res.data.user) {
+          navigate("/login");
+        }
+        setRole(res?.data?.user?.role);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
   }, []);
   const handleSubmit = () => {
     axios({

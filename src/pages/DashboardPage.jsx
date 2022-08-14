@@ -23,7 +23,10 @@ const DashboardPage = () => {
         return () => console.log("unmounted");
       })
       .catch((error) => {
-        if (error?.response?.status !== 200) {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
           navigate("/login");
         }
       });

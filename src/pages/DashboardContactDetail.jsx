@@ -12,17 +12,27 @@ const DashboardContactDetail = () => {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/contacts/${id}`).then((res) => {
-      if (!res.data.role) {
-        navigate("/login");
-      }
-      if (res?.data?.contact) {
-        setContact(res?.data?.contact);
-      }
+    axios
+      .get(`http://localhost:4000/contacts/${id}`)
+      .then((res) => {
+        if (!res.data.role) {
+          navigate("/login");
+        }
+        if (res?.data?.contact) {
+          setContact(res?.data?.contact);
+        }
 
-      setRole(res?.data?.role);
-      setIsReady(true);
-    });
+        setRole(res?.data?.role);
+        setIsReady(true);
+      })
+      .catch((error) => {
+        if (
+          error?.response?.status === 401 ||
+          error?.response?.status === 403
+        ) {
+          navigate("/login");
+        }
+      });
   }, []);
   //   const contact = {
   //     _id: 123,

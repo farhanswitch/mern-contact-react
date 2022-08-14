@@ -12,15 +12,20 @@ const DashboardPage = () => {
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/auth").then((res) => {
-      if (res?.data?.id) {
-        console.log(res.data);
-        setResponse(res.data);
-      } else {
-        navigate("/login");
-      }
-      return () => console.log("unmounted");
-    });
+    axios
+      .get("http://localhost:4000/auth")
+      .then((res) => {
+        if (res?.data?.id) {
+          console.log(res.data);
+          setResponse(res.data);
+        }
+        return () => console.log("unmounted");
+      })
+      .catch((error) => {
+        if (error?.response?.status !== 200) {
+          navigate("/login");
+        }
+      });
   }, []);
   const handleAction = () => {
     axios.delete("http://localhost:4000/users/logout").then((res) => {

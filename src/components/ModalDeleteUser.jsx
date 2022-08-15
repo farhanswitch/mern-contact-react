@@ -57,7 +57,7 @@ const ModalDeleteUser = ({ handleClose, user }) => {
 
   return (
     <div
-      className={`layer fixed top-0 left-0 pt-10 z-[11]  w-screen h-screen bg-transparent flex justify-center`}
+      className={`layer fixed top-0 left-0 z-[11]  w-screen h-screen bg-transparent flex justify-center items-center`}
     >
       {response && (
         <ModalResponse

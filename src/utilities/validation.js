@@ -22,7 +22,23 @@ const checkName = (name) => {
   }
   return validator.isAlpha(name, "en-US", { ignore: " " });
 };
-
+export const validatingEditPassword = (
+  oldPassword,
+  newPassword,
+  confNewPassword
+) => {
+  let errors = [];
+  if (!checkPassword(oldPassword)) {
+    errors.push({ msg: "Current password min 8 characters" });
+  }
+  if (!checkPassword(newPassword)) {
+    errors.push({ msg: "New password min 8 characters" });
+  }
+  if (confNewPassword !== newPassword) {
+    errors.push({ msg: "New password and confirmation doesn't match" });
+  }
+  return errors;
+};
 export const validatingUserData = (name, email, password) => {
   const isValidName = checkName(name);
   const isValidEmail = checkEmail(email);

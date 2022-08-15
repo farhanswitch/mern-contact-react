@@ -15,7 +15,6 @@ const DashboardPage = () => {
   useEffect(() => {
     axios.get("http://localhost:4000/auth").then((res) => {
       if (res?.data?.user) {
-        console.log(res.data);
         setResponse(res.data);
         setIsReady(true);
       } else {
@@ -33,17 +32,19 @@ const DashboardPage = () => {
   };
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
-      <DashboardLayout pageTitle="Dashboard" role={response?.user?.role}>
-        <>
-          <header className="w-full mt-4 px-8 flex justify-between">
-            <span></span>
-            <h2 className="text-lg">Dashboard</h2>
-          </header>
-          <div className="content flex-1 grid place-items-center">
-            <h3 className="text-center">Hi, {response?.name}</h3>
-          </div>
-        </>
-      </DashboardLayout>
+      {response && (
+        <DashboardLayout pageTitle="Dashboard" role={response.user.role}>
+          <>
+            <header className="w-full mt-4 px-8 flex justify-between">
+              <span></span>
+              <h2 className="text-lg">Dashboard</h2>
+            </header>
+            <div className="content flex-1 grid place-items-center">
+              <h3 className="text-center">Hi, {response?.name}</h3>
+            </div>
+          </>
+        </DashboardLayout>
+      )}
     </div>
   );
 };

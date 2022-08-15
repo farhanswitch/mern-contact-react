@@ -19,6 +19,10 @@ const DashboardLayout = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    if (!props.role) {
+      console.log(props);
+      // navigate("/login");
+    }
     // axios.get("http://localhost:4000/auth").then((res) => {
     //   if (res?.data?.id) {
     //     console.log(res.data);
@@ -28,7 +32,7 @@ const DashboardLayout = (props) => {
     //   }
     //   return () => console.log("unmounted");
     // });
-  }, []);
+  }, [props.role]);
   const handleAction = () => {
     axios.delete("http://localhost:4000/users/logout").then((res) => {
       if (res.data.msg === "logged-out") {

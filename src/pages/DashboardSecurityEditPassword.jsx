@@ -1,19 +1,75 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import DashboardLayout from "../components/DashboardLayout";
+import ModalNotif from "../components/ModalNotif";
+import { validatingEditPassword } from "../utilities/validation";
+import { encrypt } from "../utilities/aes";
 
 const DashboardSecurityEditPassword = () => {
+  const navigate = useNavigate();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [response, setResponse] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const errors = validatingEditPassword(
+      oldPassword,
+      newPassword,
+      confirmNewPassword
+    );
+    if (errors.length !== 0) {
+      setResponse({
+        statusMsg: "Error",
+        errors,
+      });
+      setShowModal(true);
+      console.log(errors);
+    } else {
+      axios
+        .patch("http://localhost:4000/users/edit/password", {
+          id: user?.id,
+          password: encrypt(oldPassword),
+          newPassword: encrypt(newPassword),
+        })
+        .then((res) => {
+          setResponse(res?.data);
+          console.log(res.data);
+          setShowModal(true);
+          if (res?.data?.statusMsg === "Success") {
+            axios
+              .delete("http://localhost:4000/users/logout")
+              .then((res) => {});
+          }
+        });
+    }
     console.log(oldPassword, newPassword, confirmNewPassword);
   };
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/auth").then((res) => {
+      if (!res?.data?.user) {
+        navigate("/login");
+      } else {
+        setUser({ id: res?.data?.user?.id, role: res?.data?.user?.role });
+      }
+    });
+  }, []);
   return (
-    <DashboardLayout pageTitle="Change Password">
+    <DashboardLayout role={user?.role} pageTitle="Change Password">
+      {response && (
+        <ModalNotif
+          showModal={showModal}
+          setShowModal={setShowModal}
+          response={response}
+          nextPath="/dashboard"
+        />
+      )}
       <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
         <Link className="text-blue-700" to="/dashboard/contacts">
           All Settings

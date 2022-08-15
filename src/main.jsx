@@ -13,6 +13,8 @@ import DashboardContactEdit from "./pages/DashboardContactEdit";
 import DashboardContactAdd from "./pages/DashboardContactAdd";
 import DashboardUsersPage from "./pages/DashboardUsers";
 import DashboardUserEdit from "./pages/DashboardUsersEdit";
+import DashboardSettingPage from "./pages/DashboardSetting";
+import DashboardSecurityEditPassword from "./pages/DashboardSecurityEditPassword";
 import NotFound from "./pages/NotFound";
 
 ReactDOM.render(
@@ -39,6 +41,11 @@ ReactDOM.render(
         />
         <Route path="/dashboard/users" element={<DashboardUsersPage />} />
         <Route path="/dashboard/users/:id" element={<DashboardUserEdit />} />
+        <Route path="/dashboard/setting" element={<DashboardSettingPage />} />
+        <Route
+          path="/dashboard/setting/security/editpassword"
+          element={<DashboardSecurityEditPassword />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

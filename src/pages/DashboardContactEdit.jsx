@@ -43,7 +43,7 @@ const DashboardContactEdit = () => {
   return (
     <div className={`${isReady ? "block" : "hidden"}`}>
       <DashboardLayout pageTitle="Edit Contact" role={role}>
-        {result?.msg ? (
+        {result?.statusMsg ? (
           <ModalNotif
             showModal={showModal}
             setShowModal={setShowModal}

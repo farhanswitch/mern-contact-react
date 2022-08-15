@@ -7,13 +7,18 @@ function App() {
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/check").then((res) => {
-      if (res?.data?.msg === "ok") {
-        setStatus("Running");
-      } else {
-        setStatus("Down");
-      }
-    });
+    axios
+      .get("http://localhost:4000/check")
+      .then((res) => {
+        if (res?.data?.msg === "ok") {
+          setStatus("Running");
+        } else {
+          setStatus("Down");
+        }
+      })
+      .catch((error) => {
+        setStatus("Something went wrong");
+      });
   });
   return (
     <Layout pageTitle="Home">

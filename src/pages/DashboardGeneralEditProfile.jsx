@@ -31,20 +31,29 @@ const DashboardGeneralEditProfile = () => {
     console.log(errors);
   };
   useEffect(() => {
-    const getData = async () => {
-      const userId = await (
-        await axios.get("http://localhost:4000/auth")
-      ).data.user;
-      if (userId) {
-        setId({ id: userId?.id, role: userId?.role });
-        const userData = await (
-          await axios.get(`http://localhost:4000/users/${id.id}`)
-        )?.data?.user;
-        setUser(userData);
-        console.log(userData);
-      }
-    };
-    getData();
+    // const getData = async () => {
+    //   const userId = await (
+    //     await axios.get("http://localhost:4000/auth")
+    //   ).data.user;
+    //   if (userId !== undefined) {
+    //     setId({ id: userId?.id, role: userId?.role });
+    //     const userData = await (
+    //       await axios.get(`http://localhost:4000/users/${id.id}`)
+    //     )?.data?.user;
+    //     setUser(userData);
+    //     console.log(userData);
+    //   }
+    // };
+    // getData();
+
+    axios.get("http://localhost:4000/auth").then((res) => {
+      setId({ id: res.data.user.id, role: res.data.user.role });
+      axios
+        .get(`http://localhost:4000/users/${res.data.user.id}`)
+        .then((response) => {
+          setUser(response.data.user);
+        });
+    });
   }, []);
   return (
     <div className="edituser">

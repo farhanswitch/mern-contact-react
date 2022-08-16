@@ -18,6 +18,15 @@ const DashboardSettingPage = () => {
         <h2 className="text-md text-right ">Account Setting</h2>
       </header>
       <main className="mt-6 px-4">
+        <h3 className="text-slate-800">General</h3>
+        <div className="menu-setting pl-4 mb-6">
+          <Link
+            className="text-blue-700 mt-2 text-sm"
+            to="/dashboard/setting/general/editprofile"
+          >
+            Edit profile
+          </Link>
+        </div>
         <h3 className="text-slate-800">Security</h3>
         <div className="menu-setting pl-4">
           <Link

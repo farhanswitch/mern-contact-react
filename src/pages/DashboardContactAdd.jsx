@@ -5,6 +5,7 @@ import axios from "axios";
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import SaveIcon from "../icons/Save";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 
 const DashboardContactAdd = () => {
   const navigate = useNavigate();
@@ -48,14 +49,15 @@ const DashboardContactAdd = () => {
         />
       )}
       <div className="container mt-4 mx-auto  max-w-3xl">
-        <header className="flex mb-6 justify-between px-2 items-center">
-          <h2 className="text-slate-700">Add Contact</h2>
+        <header className="flex mb-6 justify-between px-3 items-center">
           <Link
             to="/dashboard/contacts"
-            className="text-decoration-none text-blue-700"
+            className="text-decoration-none flex items-center gap-2 text-blue-700"
           >
+            <ChevronLeftIcon width={15} />
             All Contact
           </Link>
+          <h2 className="text-slate-700">Add Contact</h2>
         </header>
         <form
           className="px-4"

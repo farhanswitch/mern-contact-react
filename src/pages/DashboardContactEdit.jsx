@@ -5,6 +5,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import UpdateIcon from "../icons/Update";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 
 const DashboardContactEdit = () => {
   const navigate = useNavigate();
@@ -53,7 +54,8 @@ const DashboardContactEdit = () => {
           />
         ) : null}
         <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
-          <Link className="text-blue-700" to="/dashboard/contacts">
+          <Link className="text-blue-700 flex gap-2" to="/dashboard/contacts">
+            <ChevronLeftIcon width={15} />
             All Contact
           </Link>
           <h2 className="text-md">Contact Details</h2>

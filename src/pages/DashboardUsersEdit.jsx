@@ -6,6 +6,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import ModalDeleteUser from "../components/ModalDeleteUser";
 import UpdateIcon from "../icons/Update";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 
 const DashboardUserEdit = () => {
   const navigate = useNavigate();
@@ -61,7 +62,8 @@ const DashboardUserEdit = () => {
         ) : null}
         <div className="relative w-full h-full">
           <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
-            <Link className="text-blue-700" to="/dashboard/users">
+            <Link className="text-blue-700 flex gap-2" to="/dashboard/users">
+              <ChevronLeftIcon width={15} />
               All User
             </Link>
             <h2 className="text-md">User's Details</h2>

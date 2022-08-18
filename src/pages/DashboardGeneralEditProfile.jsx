@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
 import UpdateIcon from "../icons/Update";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 import { validatingUserData } from "../utilities/validation";
 import ModalNotif from "../components/ModalNotif";
 
@@ -68,7 +69,8 @@ const DashboardGeneralEditProfile = () => {
             />
           )}
           <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
-            <Link className="text-blue-700" to="/dashboard/setting">
+            <Link className="text-blue-700 flex gap-2" to="/dashboard/setting">
+              <ChevronLeftIcon width={15} />
               All Setting
             </Link>
             <h2 className="text-md">Edit Profile</h2>

@@ -6,6 +6,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import ModalNotif from "../components/ModalNotif";
 import { validatingEditPassword } from "../utilities/validation";
 import { encrypt } from "../utilities/aes";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 
 const DashboardSecurityEditPassword = () => {
   const navigate = useNavigate();
@@ -71,7 +72,8 @@ const DashboardSecurityEditPassword = () => {
         />
       )}
       <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
-        <Link className="text-blue-700" to="/dashboard/contacts">
+        <Link className="text-blue-700 flex gap-2" to="/dashboard/contacts">
+          <ChevronLeftIcon width={15} />
           All Settings
         </Link>
         <h2 className="text-md">Change Password</h2>

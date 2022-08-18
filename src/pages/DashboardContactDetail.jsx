@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../components/DashboardLayout";
+import ChevronLeftIcon from "../icons/ChevronLeft";
 
 const DashboardContactDetail = () => {
   const { id } = useParams();
@@ -34,7 +35,8 @@ const DashboardContactDetail = () => {
     <div className={`${isReady ? "block" : "hidden"}`}>
       <DashboardLayout pageTitle="Contact Detail" role={role}>
         <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
-          <Link className="text-blue-700" to="/dashboard/contacts">
+          <Link className="text-blue-700 flex gap-2" to="/dashboard/contacts">
+            <ChevronLeftIcon width={15} />
             All Contact
           </Link>
           <h2 className="text-md">Contact Details</h2>

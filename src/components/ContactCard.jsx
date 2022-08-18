@@ -8,7 +8,7 @@ const ContactCard = ({ contact, setToDelete, authRole }) => {
       <div className="actions max-w-1/2 hidden duration-300 group-hover:flex flex-wrap items-center gap-4">
         <h3 className="text-slate-600 text-sm">Actions</h3>
         <Link to={`/dashboard/contacts/${contact._id.toString()}`}>
-          <button className="bg-green-400 text-white text-xs rounded border px-2 py-1">
+          <button className="bg-[rgb(76,217,100)] text-white text-xs rounded border px-2 py-1">
             Details
           </button>
         </Link>
@@ -16,7 +16,7 @@ const ContactCard = ({ contact, setToDelete, authRole }) => {
           className={`${authRole === 2 || authRole === 1 ? "block" : "hidden"}`}
           to={`/dashboard/contacts/edit/${contact._id.toString()}`}
         >
-          <button className="bg-yellow-500/80 text-white text-xs rounded border px-2 py-1">
+          <button className="bg-[rgb(255,204,0)] text-white text-xs rounded border px-2 py-1">
             Edit
           </button>
         </Link>
@@ -24,7 +24,7 @@ const ContactCard = ({ contact, setToDelete, authRole }) => {
           onClick={() => setToDelete(contact?._id?.toString())}
           className={`${
             authRole === 1 ? "block" : "hidden"
-          } bg-red-400 text-white text-xs rounded border px-2 py-1`}
+          } bg-[rgb(255,45,85)] text-white text-xs rounded border px-2 py-1`}
         >
           Delete
         </button>

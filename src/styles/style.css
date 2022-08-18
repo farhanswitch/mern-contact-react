@@ -980,8 +980,9 @@ video {
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-500\/80 {
-  background-color: rgb(234 179 8 / 0.8);
+.bg-\[rgb\(255\2c 204\2c 0\)\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 204 0 / var(--tw-bg-opacity));
 }
 
 .bg-red-400 {
@@ -1012,6 +1013,16 @@ video {
 
 .bg-blue-600\/70 {
   background-color: rgb(37 99 235 / 0.7);
+}
+
+.bg-\[rgb\(76\2c 217\2c 100\)\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 217 100 / var(--tw-bg-opacity));
+}
+
+.bg-\[rgb\(255\2c 45\2c 85\)\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 45 85 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -1070,9 +1081,9 @@ video {
   padding-right: 1rem;
 }
 
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .py-2 {
@@ -1090,6 +1101,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1103,11 +1119,6 @@ video {
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .pt-10 {

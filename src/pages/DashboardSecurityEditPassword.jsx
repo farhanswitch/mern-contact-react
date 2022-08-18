@@ -71,7 +71,7 @@ const DashboardSecurityEditPassword = () => {
           nextPath="/dashboard"
         />
       )}
-      <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
+      <header className="w-full mt-4 mb-8 px-3 flex items-center justify-between">
         <Link className="text-blue-700 flex gap-2" to="/dashboard/contacts">
           <ChevronLeftIcon width={15} />
           All Settings
@@ -86,7 +86,7 @@ const DashboardSecurityEditPassword = () => {
               type="password"
               name="curr-pass"
               id="curr-pass"
-              className="border block mt-2"
+              className="border block mt-2 w-[250px]"
               required
               value={oldPassword}
               onChange={(e) => {
@@ -100,7 +100,7 @@ const DashboardSecurityEditPassword = () => {
               type="password"
               name="new-pass"
               id="new-pass"
-              className="border block mt-2"
+              className="border block mt-2 w-[250px]"
               required
               value={newPassword}
               onChange={(e) => {
@@ -114,7 +114,7 @@ const DashboardSecurityEditPassword = () => {
               type="password"
               name="conf-new-pass"
               id="conf-new-pass"
-              className="border block mt-2"
+              className="border block mt-2 w-[250px]"
               required
               value={confirmNewPassword}
               onChange={(e) => {

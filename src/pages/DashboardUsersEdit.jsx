@@ -61,7 +61,7 @@ const DashboardUserEdit = () => {
           />
         ) : null}
         <div className="relative w-full h-full">
-          <header className="w-full mt-4 mb-8 px-8 flex items-center justify-between">
+          <header className="w-full mt-4 mb-8 px-3 flex items-center justify-between">
             <Link className="text-blue-700 flex gap-2" to="/dashboard/users">
               <ChevronLeftIcon width={15} />
               All User

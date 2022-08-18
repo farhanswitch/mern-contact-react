@@ -146,7 +146,12 @@ const DashboardLayout = (props) => {
                 className="w-full flex gap-2 items-center hover:bg-white/60 px-1 py-1 mb-3"
               >
                 <GearIcon width={16} />
-                <span>Setting</span>
+                <span
+                  className={`${isOpen ? "block" : "hidden"} cursor-pointer`}
+                >
+                  {" "}
+                  Setting{" "}
+                </span>
               </Link>
             </li>
             <li className="absolute bottom-2 left-1 w-full">

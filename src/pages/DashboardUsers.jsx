@@ -11,6 +11,7 @@ const DashboardUsersPage = () => {
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:4000/users").then((res) => {
+      console.log(res.data);
       if (res.data?.user?.role !== 1) {
         navigate("/dashboard");
       }
